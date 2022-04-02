@@ -1,7 +1,8 @@
-package ru.geekbrains.registration
+package ru.geekbrains.registration.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.geekbrains.registration.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
