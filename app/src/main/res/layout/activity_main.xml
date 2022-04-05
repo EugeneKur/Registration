@@ -10,30 +10,30 @@
     tools:context=".mvp.view.MainActivity">
 
     <TextView
-        android:id="@+id/title_authentication"
+        android:id="@+id/title_authentication_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_title_authentication"
-        android:textSize="@dimen/text_size"
+        android:text="@string/text_authentication_text_view"
+        android:textSize="@dimen/size_text"
         android:textStyle="bold"
-        android:textColor="@color/text_color"/>
+        android:textColor="@color/color_text"/>
     <EditText
         android:id="@+id/login_authentication_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/size_text"
         android:textStyle="normal"
-        android:textColor="@color/text_color"
-        android:hint="@string/hint_text_login_authentication">
+        android:textColor="@color/color_text"
+        android:hint="@string/hint_text_login_authentication_editText">
     </EditText>
     <EditText
-        android:id="@+id/password_authentication_editText"
+        android:id="@+id/password_authentication_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/size_text"
         android:textStyle="normal"
-        android:textColor="@color/text_color"
-        android:hint="@string/hint_text_password_authentication">
+        android:textColor="@color/color_text"
+        android:hint="@string/hint_text_password_authentication_edit_text">
     </EditText>
 
     <LinearLayout
@@ -42,50 +42,50 @@
         android:orientation="vertical"
         >
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Войти"
-            android:layout_margin="@dimen/margin_button_authentication">
+            android:layout_margin="@dimen/margin_login_button">
         </Button>
         <Button
-            android:id="@+id/button_registration"
+            android:id="@+id/registration_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Регистрация"
-            android:layout_margin="@dimen/margin_button_authentication">
+            android:layout_margin="@dimen/margin_login_button">
         </Button>
         <Button
-            android:id="@+id/button_forgot_password"
+            android:id="@+id/forgot_password_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Забыл пароль"
-            android:layout_margin="@dimen/margin_button_authentication">
+            android:layout_margin="@dimen/margin_login_button">
         </Button>
 
     </LinearLayout>
     <TextView
-        android:id="@+id/result_authentication"
+        android:id="@+id/result_authentication_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="результат"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/size_text"
         android:textStyle="normal"
-        android:textColor="@color/text_color"/>
+        android:textColor="@color/color_text"/>
     <TextView
-        android:id="@+id/loading_text_authentication"
+        android:id="@+id/loading_authentication_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/size_text"
         android:text="LOADING..."
         android:visibility="gone"
         />
     <ProgressBar
         android:visibility="gone"
-        android:id="@+id/progress_authentication"
+        android:id="@+id/progress_authentication_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="padding_main">10dp</dimen>
-    <dimen name="text_size">20sp</dimen>
-    <dimen name="margin_button_authentication">3dp</dimen>
+    <dimen name="size_text">20sp</dimen>
+    <dimen name="margin_login_button">3dp</dimen>
 </resources>

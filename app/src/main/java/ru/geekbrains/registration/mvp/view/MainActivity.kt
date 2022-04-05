@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
         presenter = initPresenter()
         presenter?.onAttach(this)
 
-        binding.buttonLogin.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             presenter?.onLogin(binding.loginAuthenticationEditText.text.toString(), binding.passwordAuthenticationEditText.text.toString())
         }
     }
@@ -44,33 +44,33 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
 
     @MainThread
     override fun setSuccess() {
-        binding.buttonLogin.isVisible = false
-        binding.buttonRegistration.isVisible = false
-        binding.buttonForgotPassword.isVisible = false
+        binding.loginButton.isVisible = false
+        binding.registrationButton.isVisible = false
+        binding.forgotPasswordButton.isVisible = false
         binding.root.setBackgroundColor(Color.BLUE)
-        binding.resultAuthentication.text = "Вы вошли!"
+        binding.resultAuthenticationTextView.text = "Вы вошли!"
         Toast.makeText(this, "Успех!", Toast.LENGTH_SHORT).show()
     }
 
     @MainThread
     override fun setError(error: String) {
-        binding.resultAuthentication.text = "не верный логин или пароль"
+        binding.resultAuthenticationTextView.text = "не верный логин или пароль"
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
     @MainThread
     override fun showProgress() {
-        binding.buttonLogin.isEnabled = false
+        binding.loginButton.isEnabled = false
         hideKeyboard(this)
-        binding.loadingTextAuthentication.isVisible = true
-        binding.progressAuthentication.isVisible = true
+        binding.loadingAuthenticationTextView.isVisible = true
+        binding.progressAuthenticationProgressBar.isVisible = true
     }
 
     @MainThread
     override fun hideProgress() {
-        binding.buttonLogin.isEnabled = true
-        binding.loadingTextAuthentication.isVisible = false
-        binding.progressAuthentication.isVisible = false
+        binding.loginButton.isEnabled = true
+        binding.loadingAuthenticationTextView.isVisible = false
+        binding.progressAuthenticationProgressBar.isVisible = false
     }
 
     override fun showLogin() {
