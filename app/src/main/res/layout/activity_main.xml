@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="@dimen/padding_main"
-    tools:context=".ui.MainActivity">
+    tools:context=".mvp.view.MainActivity">
 
     <TextView
         android:id="@+id/title_authentication"
@@ -42,6 +42,7 @@
         android:orientation="vertical"
         >
         <Button
+            android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -49,6 +50,7 @@
             android:layout_margin="@dimen/margin_button_authentication">
         </Button>
         <Button
+            android:id="@+id/button_registration"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -56,6 +58,7 @@
             android:layout_margin="@dimen/margin_button_authentication">
         </Button>
         <Button
+            android:id="@+id/button_forgot_password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -64,5 +67,27 @@
         </Button>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/result_authentication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="результат"
+        android:textSize="@dimen/text_size"
+        android:textStyle="normal"
+        android:textColor="@color/text_color"/>
+    <TextView
+        android:id="@+id/loading_text_authentication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        android:text="LOADING..."
+        android:visibility="gone"
+        />
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_authentication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
