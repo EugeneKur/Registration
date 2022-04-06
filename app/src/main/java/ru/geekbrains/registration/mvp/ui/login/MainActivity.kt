@@ -1,4 +1,4 @@
-package ru.geekbrains.registration.mvp.view
+package ru.geekbrains.registration.mvp.ui.login
 
 import android.app.Activity
 import android.graphics.Color
@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import ru.geekbrains.registration.R
 import ru.geekbrains.registration.databinding.ActivityMainBinding
-import ru.geekbrains.registration.mvp.RegistrationContracts
-import ru.geekbrains.registration.mvp.presenter.RegistrationPresenter
 
 
 class MainActivity : AppCompatActivity(), RegistrationContracts.View {

@@ -1,4 +1,4 @@
-package ru.geekbrains.registration.mvp
+package ru.geekbrains.registration.mvp.domain
 
 interface LoginApi {
     fun login(login: String, password: String): String

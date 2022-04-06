@@ -1,4 +1,4 @@
-package ru.geekbrains.registration.mvp.utils
+package ru.geekbrains.registration.mvp.data
 
 class Users {
     val userName: String = "name"

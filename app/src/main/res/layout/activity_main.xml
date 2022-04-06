@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="@dimen/padding_main"
-    tools:context=".mvp.view.MainActivity">
+    tools:context=".mvp.ui.login.MainActivity">
 
     <TextView
         android:id="@+id/title_authentication_text_view"

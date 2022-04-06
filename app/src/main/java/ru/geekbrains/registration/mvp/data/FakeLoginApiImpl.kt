@@ -1,5 +1,6 @@
-package ru.geekbrains.registration.mvp
+package ru.geekbrains.registration.mvp.data
 
+import ru.geekbrains.registration.mvp.domain.LoginApi
 import ru.geekbrains.registration.mvp.utils.FakeServer
 
 class FakeLoginApiImpl: LoginApi {
@@ -7,6 +8,7 @@ class FakeLoginApiImpl: LoginApi {
     private var answer: String = ""
 
     override fun login(login: String, password: String): String {
+        Thread.sleep(1500)
             answer = server.checkUser(login, password)
             return answer
     }
@@ -18,14 +20,17 @@ class FakeLoginApiImpl: LoginApi {
         eMail: String,
         date: String
     ): Boolean {
-        TODO("Not yet implemented")
+        Thread.sleep(1500)
+        return true
     }
 
     override fun restorePassword(login: String): Boolean {
-        TODO("Not yet implemented")
+        Thread.sleep(1500)
+        return true
     }
 
     override fun logout(): Boolean {
-        TODO("Not yet implemented")
+        Thread.sleep(1500)
+        return true
     }
 }

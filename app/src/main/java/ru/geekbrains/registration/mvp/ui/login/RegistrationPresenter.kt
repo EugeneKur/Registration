@@ -1,9 +1,8 @@
-package ru.geekbrains.registration.mvp.presenter
+package ru.geekbrains.registration.mvp.ui.login
 
 
-import ru.geekbrains.registration.mvp.FakeLoginApiImpl
-import ru.geekbrains.registration.mvp.RegistrationContracts
-import ru.geekbrains.registration.mvp.model.RegistrationModel
+import ru.geekbrains.registration.mvp.data.FakeLoginApiImpl
+import ru.geekbrains.registration.mvp.domain.LoginApi
 import java.lang.Thread.sleep
 
 
@@ -12,7 +11,7 @@ class RegistrationPresenter: RegistrationContracts.Presenter {
     private var view: RegistrationContracts.View? = null
     private var isSuccess: Boolean = false
     private var errorText: String = ""
-    private var registrationModel: FakeLoginApiImpl? = null
+    private val api: LoginApi = FakeLoginApiImpl()
 
     override fun onAttach(view: RegistrationContracts.View) {
         this.view = view
@@ -34,7 +33,7 @@ class RegistrationPresenter: RegistrationContracts.Presenter {
                     isSuccess = true
                     errorText = ""
                 } else {
-                    errorText = registrationModel?.login(login, password) ?: ""
+                    errorText = api.login(login, password)
                     view?.setError(errorText)
                     isSuccess = false
                 }
@@ -43,8 +42,7 @@ class RegistrationPresenter: RegistrationContracts.Presenter {
     }
 
     private fun checkCredentials(login: String, password: String): Boolean {
-        registrationModel = FakeLoginApiImpl()
-        return registrationModel?.login(login, password) == "Успех!"
+        return api.login(login, password) == "Успех!"
     }
 
     override fun onCredentialsChange() {

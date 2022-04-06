@@ -1,5 +1,7 @@
 package ru.geekbrains.registration.mvp.utils
 
+import ru.geekbrains.registration.mvp.data.Users
+
 class FakeServer {
     private var users: Users = Users()
     private var userName = users.userName
