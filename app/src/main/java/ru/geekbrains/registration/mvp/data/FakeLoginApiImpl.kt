@@ -3,14 +3,14 @@ package ru.geekbrains.registration.mvp.data
 import ru.geekbrains.registration.mvp.domain.LoginApi
 import ru.geekbrains.registration.mvp.utils.FakeServer
 
-class FakeLoginApiImpl: LoginApi {
+class FakeLoginApiImpl : LoginApi {
     private var server: FakeServer = FakeServer()
     private var answer: String = ""
 
     override fun login(login: String, password: String): String {
         Thread.sleep(1500)
-            answer = server.checkUser(login, password)
-            return answer
+        answer = server.checkUser(login, password)
+        return answer
     }
 
     override fun register(

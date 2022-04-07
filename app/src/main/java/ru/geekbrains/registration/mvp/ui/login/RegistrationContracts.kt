@@ -8,10 +8,13 @@ class RegistrationContracts {
     interface View {
         @MainThread
         fun setSuccess()
+
         @MainThread
         fun setError(error: String)
+
         @MainThread
         fun showProgress()
+
         @MainThread
         fun hideProgress()
         fun showLogin()

@@ -27,13 +27,16 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
         presenter?.onAttach(this)
 
         binding.loginButton.setOnClickListener {
-            presenter?.onLogin(binding.loginAuthenticationEditText.text.toString(), binding.passwordAuthenticationEditText.text.toString())
+            presenter?.onLogin(
+                binding.loginAuthenticationEditText.text.toString(),
+                binding.passwordAuthenticationEditText.text.toString()
+            )
         }
     }
 
     private fun initPresenter(): RegistrationPresenter {
         val presenter = lastCustomNonConfigurationInstance as? RegistrationPresenter
-        return presenter ?: RegistrationPresenter(app.api)
+        return presenter ?: RegistrationPresenter(app.loginUsecase)
     }
 
     override fun onRetainCustomNonConfigurationInstance(): Any? {

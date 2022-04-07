@@ -9,8 +9,8 @@ class FakeServer {
     private var answer: String = ""
 
     fun checkUser(login: String, password: String): String {
-        if (login==userName) {
-            if (password==userPassword) {
+        if (login == userName) {
+            if (password == userPassword) {
                 answer = "Успех!"
             } else {
                 answer = "Неверный пароль."
