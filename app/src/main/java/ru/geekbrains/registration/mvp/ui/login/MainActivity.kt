@@ -12,6 +12,7 @@ import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import ru.geekbrains.registration.databinding.ActivityMainBinding
+import ru.geekbrains.registration.mvp.app
 
 
 class MainActivity : AppCompatActivity(), RegistrationContracts.View {
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
 
     private fun initPresenter(): RegistrationPresenter {
         val presenter = lastCustomNonConfigurationInstance as? RegistrationPresenter
-        return presenter ?: RegistrationPresenter()
+        return presenter ?: RegistrationPresenter(app.api)
     }
 
     override fun onRetainCustomNonConfigurationInstance(): Any? {

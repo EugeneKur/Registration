@@ -1,17 +1,14 @@
 package ru.geekbrains.registration.mvp.ui.login
 
-
-import ru.geekbrains.registration.mvp.data.FakeLoginApiImpl
 import ru.geekbrains.registration.mvp.domain.LoginApi
 import java.lang.Thread.sleep
 
-
-class RegistrationPresenter: RegistrationContracts.Presenter {
+class RegistrationPresenter(private val api: LoginApi): RegistrationContracts.Presenter {
 
     private var view: RegistrationContracts.View? = null
     private var isSuccess: Boolean = false
     private var errorText: String = ""
-    private val api: LoginApi = FakeLoginApiImpl()
+
 
     override fun onAttach(view: RegistrationContracts.View) {
         this.view = view
@@ -25,7 +22,6 @@ class RegistrationPresenter: RegistrationContracts.Presenter {
     override fun onLogin(login: String, password: String) {
         view?.showProgress()
         Thread {
-            sleep(1000)
             view?.getHandler()?.post {
                 view?.hideProgress()
                 if (checkCredentials(login, password)) {
