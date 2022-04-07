@@ -3,4 +3,6 @@
     <string name="text_authentication_text_view">Профиль</string>
     <string name="hint_text_login_authentication_editText">Введите логин</string>
     <string name="hint_text_password_authentication_edit_text">Ведите пароль</string>
+    <string name="text_registration_text_view">Регистрация</string>
+    <string name="text_restore_text_view">Восстановление пароля</string>
 </resources>

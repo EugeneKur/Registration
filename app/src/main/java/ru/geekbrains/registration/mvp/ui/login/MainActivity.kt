@@ -1,6 +1,7 @@
 package ru.geekbrains.registration.mvp.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import ru.geekbrains.registration.databinding.ActivityMainBinding
 import ru.geekbrains.registration.mvp.app
+import ru.geekbrains.registration.mvp.ui.registration.RegistrationActivity
+import ru.geekbrains.registration.mvp.ui.restore.RestoreActivity
 
 
 class MainActivity : AppCompatActivity(), RegistrationContracts.View {
@@ -31,6 +34,12 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
                 binding.loginAuthenticationEditText.text.toString(),
                 binding.passwordAuthenticationEditText.text.toString()
             )
+        }
+        binding.registrationButton.setOnClickListener {
+            startActivity(Intent(applicationContext, RegistrationActivity::class.java))
+        }
+        binding.forgotPasswordButton.setOnClickListener {
+            startActivity(Intent(applicationContext, RestoreActivity::class.java))
         }
     }
 
