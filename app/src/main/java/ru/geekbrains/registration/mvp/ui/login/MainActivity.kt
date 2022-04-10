@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
         }
     }
 
-    private fun initPresenter(): RegistrationPresenter {
-        val presenter = lastCustomNonConfigurationInstance as? RegistrationPresenter
-        return presenter ?: RegistrationPresenter(app.loginUsecase)
+    private fun initPresenter(): RegistrationViewModel {
+        val presenter = lastCustomNonConfigurationInstance as? RegistrationViewModel
+        return presenter ?: RegistrationViewModel(app.loginUsecase)
     }
 
     override fun onRetainCustomNonConfigurationInstance(): Any? {

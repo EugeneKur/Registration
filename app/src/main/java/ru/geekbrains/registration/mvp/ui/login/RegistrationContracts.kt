@@ -23,7 +23,7 @@ interface RegistrationContracts {
 //        fun getHandler(): Handler
 //    }
 
-    interface Presenter {
+    interface ViewModel {
         val shouldShowProgress: Signer<Boolean>
         val isSuccess: Signer<Boolean>
         val error: Signer<String>
