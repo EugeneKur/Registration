@@ -6,23 +6,6 @@ import ru.geekbrains.registration.mvp.utils.Signer
 
 interface RegistrationContracts {
 
-//    interface View {
-//        @MainThread
-//        fun setSuccess()
-//
-//        @MainThread
-//        fun setError(error: String)
-//
-//        @MainThread
-//        fun showProgress()
-//
-//        @MainThread
-//        fun hideProgress()
-//        fun showLogin()
-//        fun showPassword()
-//        fun getHandler(): Handler
-//    }
-
     interface ViewModel {
         val shouldShowProgress: Signer<Boolean>
         val isSuccess: Signer<Boolean>

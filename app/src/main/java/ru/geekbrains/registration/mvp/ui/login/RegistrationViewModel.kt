@@ -9,7 +9,6 @@ class RegistrationViewModel(private val registrationUsecase: RegistrationUsecase
     override val isSuccess: Signer<Boolean> = Signer()
     override val error: Signer<String> = Signer(true)
 
-
     override fun onLogin(login: String, password: String) {
 
         shouldShowProgress.post(true)
@@ -24,21 +23,6 @@ class RegistrationViewModel(private val registrationUsecase: RegistrationUsecase
                 error.post(result)
             }
         }
-
-//        view?.showProgress()
-//
-//        registrationUsecase.login(login, password) { result ->
-//            view?.hideProgress()
-//            if (checkCredentials(result)) {
-//                view?.setSuccess()
-//                isSuccess = true
-//                errorText = ""
-//            } else {
-//                errorText = result
-//                view?.setError(errorText)
-//                isSuccess = false
-//            }
-//        }
     }
 
     private fun checkCredentials(result: String): Boolean {
