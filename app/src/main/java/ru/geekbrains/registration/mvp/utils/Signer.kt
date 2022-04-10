@@ -13,7 +13,8 @@ private class SubscriberCustom<T>(
     }
 }
 
-class Signer<T> {
+class Signer<T>(private val isSingle: Boolean = false) {
+
     private val subscribers: MutableSet<SubscriberCustom<T?>> = mutableSetOf()
     public var value: T? = null
         private set
@@ -32,8 +33,11 @@ class Signer<T> {
     }
 
     fun post(value: T) {
-        hasFirstValue = true
-        this.value = value
+        if (!isSingle) {
+            hasFirstValue = true
+            this.value = value
+
+        }
         subscribers.forEach { it.invoke(value) }
     }
 

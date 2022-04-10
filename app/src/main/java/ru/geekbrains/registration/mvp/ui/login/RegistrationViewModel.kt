@@ -7,7 +7,7 @@ class RegistrationViewModel(private val registrationUsecase: RegistrationUsecase
     RegistrationContracts.ViewModel {
     override val shouldShowProgress: Signer<Boolean> = Signer()
     override val isSuccess: Signer<Boolean> = Signer()
-    override val error: Signer<String> = Signer()
+    override val error: Signer<String> = Signer(true)
 
 
     override fun onLogin(login: String, password: String) {
