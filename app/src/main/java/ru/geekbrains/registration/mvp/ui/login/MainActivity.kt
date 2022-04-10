@@ -18,19 +18,18 @@ import ru.geekbrains.registration.mvp.ui.registration.RegistrationActivity
 import ru.geekbrains.registration.mvp.ui.restore.RestoreActivity
 
 
-class MainActivity : AppCompatActivity(), RegistrationContracts.View {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var presenter: RegistrationContracts.Presenter? = null
+    private var viewModel: RegistrationContracts.ViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = initPresenter()
-        presenter?.onAttach(this)
+        viewModel = initViewModel()
 
         binding.loginButton.setOnClickListener {
-            presenter?.onLogin(
+            viewModel?.onLogin(
                 binding.loginAuthenticationEditText.text.toString(),
                 binding.passwordAuthenticationEditText.text.toString()
             )
@@ -41,19 +40,41 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
         binding.forgotPasswordButton.setOnClickListener {
             startActivity(Intent(applicationContext, RestoreActivity::class.java))
         }
+
+        viewModel?.shouldShowProgress?.subscribe { shouldShow ->
+            if (shouldShow == true) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        }
+
+        viewModel?.isSuccess?.subscribe {
+            if (it == true) {
+                setSuccess()
+            }
+        }
+
+        viewModel?.error?.subscribe {
+            it?.let {
+                val success = viewModel?.isSuccess?.value
+                if (success == false) {
+                    setError(it)
+                }
+            }
+        }
     }
 
-    private fun initPresenter(): RegistrationViewModel {
-        val presenter = lastCustomNonConfigurationInstance as? RegistrationViewModel
-        return presenter ?: RegistrationViewModel(app.loginUsecase)
+    private fun initViewModel(): RegistrationViewModel {
+        val viewModel = lastCustomNonConfigurationInstance as? RegistrationViewModel
+        return viewModel ?: RegistrationViewModel(app.loginUsecase)
     }
 
     override fun onRetainCustomNonConfigurationInstance(): Any? {
-        return presenter
+        return viewModel
     }
 
-    @MainThread
-    override fun setSuccess() {
+    private fun setSuccess() {
         binding.loginButton.isVisible = false
         binding.registrationButton.isVisible = false
         binding.forgotPasswordButton.isVisible = false
@@ -62,38 +83,24 @@ class MainActivity : AppCompatActivity(), RegistrationContracts.View {
         Toast.makeText(this, "Успех!", Toast.LENGTH_SHORT).show()
     }
 
-    @MainThread
-    override fun setError(error: String) {
+    private fun setError(error: String) {
         binding.resultAuthenticationTextView.text = "не верный логин или пароль"
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
-    @MainThread
-    override fun showProgress() {
+    private fun showProgress() {
         binding.loginButton.isEnabled = false
         hideKeyboard(this)
         binding.loadingAuthenticationTextView.isVisible = true
         binding.progressAuthenticationProgressBar.isVisible = true
     }
 
-    @MainThread
-    override fun hideProgress() {
+    private fun hideProgress() {
         binding.loginButton.isEnabled = true
         binding.loadingAuthenticationTextView.isVisible = false
         binding.progressAuthenticationProgressBar.isVisible = false
     }
 
-    override fun showLogin() {
-        TODO("Not yet implemented")
-    }
-
-    override fun showPassword() {
-        TODO("Not yet implemented")
-    }
-
-    override fun getHandler(): Handler {
-        return Handler(Looper.getMainLooper())
-    }
 
     private fun hideKeyboard(activity: Activity) {
         val imm = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager

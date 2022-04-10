@@ -4,7 +4,8 @@ private typealias SubscriberCustom<T> = (T?) -> Unit
 
 class Signer<T> {
     private val subscribers: MutableSet<SubscriberCustom<T>> = mutableSetOf()
-    private var value: T? = null
+    public var value: T? = null
+        private set
     private var hasFirstValue = false
 
     fun subscribe(subscriber: SubscriberCustom<T>) {
