@@ -2,28 +2,15 @@ package ru.geekbrains.registration.mvp.ui.login
 
 import android.os.Handler
 import androidx.annotation.MainThread
+import ru.geekbrains.registration.mvp.utils.Signer
 
-class RegistrationContracts {
+interface RegistrationContracts {
 
-    interface View {
-        @MainThread
-        fun setSuccess()
+    interface ViewModel {
+        val shouldShowProgress: Signer<Boolean>
+        val isSuccess: Signer<Boolean>
+        val error: Signer<String>
 
-        @MainThread
-        fun setError(error: String)
-
-        @MainThread
-        fun showProgress()
-
-        @MainThread
-        fun hideProgress()
-        fun showLogin()
-        fun showPassword()
-        fun getHandler(): Handler
-    }
-
-    interface Presenter {
-        fun onAttach(view: View)
         fun onLogin(login: String, password: String)
         fun onCredentialsChange()
     }
