@@ -14,7 +14,7 @@ class App : Application() {
         FakeLoginApiImpl()
     }
     val loginUsecase: RegistrationUsecase by lazy {
-        RegistrationUsecaseImpl(app.api, Handler(Looper.getMainLooper()))
+        RegistrationUsecaseImpl(app.api)
     }
 }
 

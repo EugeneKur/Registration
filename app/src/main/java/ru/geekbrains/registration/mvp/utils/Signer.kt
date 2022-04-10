@@ -1,22 +1,30 @@
 package ru.geekbrains.registration.mvp.utils
 
-private typealias SubscriberCustom<T> = (T?) -> Unit
+import android.os.Handler
+
+private class SubscriberCustom<T>(
+    private val handler: Handler,
+    private val callback: (T?) -> Unit
+) {
+    fun invoke(value: T?) {
+        handler.post {
+            callback.invoke(value)
+        }
+    }
+}
 
 class Signer<T> {
-    private val subscribers: MutableSet<SubscriberCustom<T>> = mutableSetOf()
+    private val subscribers: MutableSet<SubscriberCustom<T?>> = mutableSetOf()
     public var value: T? = null
         private set
     private var hasFirstValue = false
 
-    fun subscribe(subscriber: SubscriberCustom<T>) {
+    fun subscribe(handler: Handler, callback: (T?) -> Unit) {
+        val subscriber = SubscriberCustom(handler, callback)
         subscribers.add(subscriber)
         if (hasFirstValue) {
             subscriber.invoke(value)
         }
-    }
-
-    fun unsubscribe(subscriber: SubscriberCustom<T>) {
-        subscribers.remove(subscriber)
     }
 
     fun unsubscribeAll() {

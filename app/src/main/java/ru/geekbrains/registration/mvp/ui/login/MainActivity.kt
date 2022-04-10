@@ -9,7 +9,6 @@ import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import ru.geekbrains.registration.databinding.ActivityMainBinding
@@ -21,6 +20,7 @@ import ru.geekbrains.registration.mvp.ui.restore.RestoreActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var viewModel: RegistrationContracts.ViewModel? = null
+    private val handler: Handler by lazy { Handler(Looper.getMainLooper()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, RestoreActivity::class.java))
         }
 
-        viewModel?.shouldShowProgress?.subscribe { shouldShow ->
+        viewModel?.shouldShowProgress?.subscribe(handler) { shouldShow ->
             if (shouldShow == true) {
                 showProgress()
             } else {
@@ -49,13 +49,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel?.isSuccess?.subscribe {
+        viewModel?.isSuccess?.subscribe(handler) {
             if (it == true) {
                 setSuccess()
             }
         }
 
-        viewModel?.error?.subscribe {
+        viewModel?.error?.subscribe(handler) {
             it?.let {
                 val success = viewModel?.isSuccess?.value
                 if (success == false) {
@@ -63,6 +63,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel?.shouldShowProgress?.unsubscribeAll()
+        viewModel?.isSuccess?.unsubscribeAll()
+        viewModel?.error?.unsubscribeAll()
     }
 
     private fun initViewModel(): RegistrationViewModel {
