@@ -2,8 +2,9 @@ package ru.geekbrains.registration.mvp.ui.login
 
 import android.os.Handler
 import androidx.annotation.MainThread
+import ru.geekbrains.registration.mvp.utils.Signer
 
-class RegistrationContracts {
+interface RegistrationContracts {
 
 //    interface View {
 //        @MainThread
@@ -23,9 +24,9 @@ class RegistrationContracts {
 //    }
 
     interface Presenter {
-        var shouldShowProgress: Boolean
-        var isSuccess: Boolean
-        var error: String?
+        val shouldShowProgress: Signer<Boolean>
+        val isSuccess: Signer<Boolean>
+        val error: Signer<String>
 
         fun onLogin(login: String, password: String)
         fun onCredentialsChange()
